@@ -38,10 +38,11 @@ createNewData(
 relationAdd(
     @Body('name') schoolName: string,
     @Body('names') studName: string,
+    @Body('relation') studRln:string
    
 )
 {
-    return this.retriveNodes.addRelation(schoolName,studName)
+    return this.retriveNodes.addRelation(schoolName,studName,studRln)
 }
 
 //get by id ...school

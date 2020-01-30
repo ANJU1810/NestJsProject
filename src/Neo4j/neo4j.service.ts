@@ -20,9 +20,9 @@ async findAll(): Promise<any> {
     return this.neo4j.session().run(`MATCH (p:student) MERGE (n:student{name:{nameParam},standard:{stdParam},place:{placeParam}}) RETURN n`, {nameParam:name,stdParam:standard,placeParam:place})
   }
 //add relation
-  addRelation(name:string,rname:string)
+  addRelation(name:string,rname:string,relation:string)
   {
-    return this.neo4j.session().run(`MATCH (a:school{name:{nameParam}}), (b:student{name:{namesParam}}) MERGE(a)-[r:student_off]-(b) RETURN a,b`, {nameParam:name,namesParam:rname})
+    return this.neo4j.session().run(`MATCH (a:school{name:{nameParam}}), (b:student{name:{namesParam}}) MERGE(a)-[r:${relation}]-(b) RETURN a,b`, {nameParam:name,namesParam:rname})
   }
 //get data by id in school
   getByIdData(id:string)
